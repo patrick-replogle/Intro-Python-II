@@ -1,4 +1,6 @@
+import sys
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -33,11 +35,24 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+
+# helper functions
+def create_player_name(lst):
+    if(len(lst) == 2):
+        return lst[1]
+    else:
+        return 'Player One'
+
+
+def validate_direction(player, direction):
+    if getattr(player.current_room, direction, None):
+        player.current_room = getattr(player.current_room, direction)
+    else:
+        print("\nThat movement isn't allowed\n")
+
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(create_player_name(sys.argv), room["outside"])
 
 # Write a loop that:
 #
@@ -49,3 +64,22 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    print(
+        f"\n{player.name}, \nyou are currently located in the {player.current_room.name} \n{player.current_room.description} \n")
+
+    selection = input("What shall I do? ")
+    selection = selection[0].lower()
+
+    if selection == "q":
+        break
+    elif selection == "n":
+        validate_direction(player, "n_to")
+    elif selection == "s":
+        validate_direction(player, "s_to")
+    elif selection == "e":
+        validate_direction(player, "e_to")
+    elif selection == "w":
+        validate_direction(player, "w_to")
+    else:
+        print("\nI don't understand")
