@@ -10,6 +10,10 @@ class Room:
     def __str__(self):
         return f"{self.name}: {self.description}"
 
+    def list_items(self):
+        for i in self.items:
+            print(f"{i.name}: {i.description}")
+
     def add_item(self, item):
         self.items.append(item)
         return self.items
