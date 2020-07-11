@@ -2,7 +2,7 @@ import sys
 from room import Room
 from player import Player
 from item import Item
-from functions import create_player_name, handle_input, validate_direction, take_item, drop_item
+from functions import create_player_name, print_location, handle_input, validate_direction, take_item, drop_item
 
 # Declare all the rooms
 
@@ -26,9 +26,9 @@ earlier adventurers. The only exit is to the south.""", []),
 
     'secret room': Room("Secret Room", """You've found the secret room North of the Treasure
 Chamber. Reward yourself with treasures once thought to be lost. South of you is the main room of 
-treasure chamber.""", [Item("Gold Coins", "Fill your pockets with riches"),
-                       Item("Crown", "The crown of a once great king"),
-                       Item("Holy Grail", "Indiana Jones would be pleased")]),
+the treasure chamber.""", [Item("Gold Coins", "Fill your pockets with riches"),
+                           Item("Crown", "The crown of a once great king"),
+                           Item("Holy Grail", "Indiana Jones would be pleased")]),
 }
 
 # Link rooms together
@@ -48,18 +48,18 @@ room['secret room'].s_to = room['treasure']
 player = Player(name=create_player_name(sys.argv),
                 current_room=room["outside"], items=[])
 
+# print(f"\n{player.name}, you are in the {player.current_room.name}. \
+#          \n{player.current_room.description}.")
+
+
+print(f"\n{player.name}, you are in the {player.current_room.name}. \
+         \n{player.current_room.description}.")
+
 # Write a loop that:
 #
 while True:
-    # * Prints the current room name
-    # * Prints the current description (the textwrap module might be useful here).
-    print(
-        f"\n{player.name}, you are in the {player.current_room.name}. \
-         \n{player.current_room.description}.\n")
-
     player.get_current_room_items()
-
-    # * Waits for user input and decides what to do.
+    # Waits for user input and decides what to do.
     user_input = input("\nWhat shall I do? ").lower().split(" ")
     first_letter = user_input[0][0]
     selection = handle_input(user_input)
@@ -67,15 +67,22 @@ while True:
     # If the user enters "q", quit the game.
     if first_letter == "q":
         break
+    # Prints the Prints the current room name and current description
+    elif first_letter == "l":
+        print_location(player)
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif first_letter == "n":
         validate_direction(player, "n_to")
+        print_location(player)
     elif first_letter == "s":
         validate_direction(player, "s_to")
+        print_location(player)
     elif first_letter == "e":
         validate_direction(player, "e_to")
+        print_location(player)
     elif first_letter == "w":
         validate_direction(player, "w_to")
+        print_location(player)
     elif first_letter == "i":
         player.get_player_items()
     # If user enters "take" or "get" followed by item an name, the item will be added to inventory

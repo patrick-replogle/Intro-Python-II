@@ -7,6 +7,11 @@ def create_player_name(lst):
         return 'Player One'
 
 
+def print_location(player):
+    print(f"\n{player.name}, you are in the {player.current_room.name}. \
+         \n{player.current_room.description}.")
+
+
 def handle_input(lst):
     if len(lst) > 2:
         combined_input = ""

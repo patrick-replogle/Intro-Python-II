@@ -20,7 +20,7 @@ class Player:
 
     def get_current_room_items(self):
         if len(self.current_room.items) > 0:
-            print(f"Items in {self.current_room.name}")
+            print(f"\nItems in {self.current_room.name}")
             for i in self.current_room.items:
                 print(f"  {i}")
 
