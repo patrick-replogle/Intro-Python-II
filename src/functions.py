@@ -19,9 +19,8 @@ def handle_input(lst):
 
 
 def validate_direction(player, direction):
-    isValid = getattr(player.current_room, direction, None)
-    if isValid:
-        player.current_room = isValid
+    if hasattr(player.current_room, direction):
+        player.current_room = getattr(player.current_room, direction, None)
     else:
         print("\nMovement not allowed!")
 

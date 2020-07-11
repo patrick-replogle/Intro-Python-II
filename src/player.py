@@ -14,7 +14,7 @@ class Player:
         if len(self.items) == 0:
             print("\nYou have no items in your inventory")
         else:
-            print('Inventory:')
+            print('\nInventory:')
             for i in self.items:
                 print(f"  {i}")
 
@@ -28,8 +28,6 @@ class Player:
 
     def take_item(self, item):
         self.items.append(item)
-        return self.items
 
     def drop_item(self, item):
         self.items.remove(item)
-        return self.items

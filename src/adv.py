@@ -71,7 +71,7 @@ while True:
         player.get_player_items()
     elif len(selection) == 2 and selection[0][0] == "t" or selection[0][0] == "g":
         take_item(player, selection)
-    elif len(selection) == 2 and selection[0][0] == "d" or selection[0][0] == "":
+    elif len(selection) == 2 and selection[0][0] == "d" or selection[0][0] == "r":
         drop_item(player, selection)
     else:
         print("\nI don't understand")
