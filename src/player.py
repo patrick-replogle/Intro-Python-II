@@ -14,19 +14,17 @@ class Player:
         if len(self.items) == 0:
             print("\nYou have no items in your inventory")
         else:
+            print('Inventory:')
             for i in self.items:
-                print(i)
-
-    # def get_current_room_items(self):
-    #     for i in self.current_room.items:
-    #         print(i)
+                print(f"  {i}")
 
     def get_current_room_items(self):
         if len(self.current_room.items) > 0:
+            print(f"Items in {self.current_room.name}")
             for i in self.current_room.items:
                 print(f"  {i}")
         else:
-            print("No items in room")
+            print(f"No items in {self.current_room.name}")
 
     def take_item(self, item):
         self.items.append(item)
