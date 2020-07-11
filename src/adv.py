@@ -2,6 +2,7 @@ import sys
 from room import Room
 from player import Player
 from item import Item
+from functions import create_player_name, handle_input, validate_direction, take_item, drop_item
 
 # Declare all the rooms
 
@@ -24,7 +25,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", []),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -36,62 +36,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
-# helper functions
-
-def create_player_name(lst):
-    if(len(lst) == 2):
-        return lst[1]
-    else:
-        return 'Player One'
-
-
-def handle_input(lst):
-    for x in range(len(lst)):
-        if len(lst) == 1:
-            lst[x] = lst[x][0].lower()
-        elif len(lst) == 2:
-            lst[x] = lst[x].lower()
-        else:
-            break
-    return lst
-
-
-def validate_direction(player, direction):
-    isValid = getattr(player.current_room, direction, None)
-    if isValid:
-        player.current_room = isValid
-    else:
-        print("\nMovement not allowed!")
-
-
-def take_item(player, command):
-    for item in player.current_room.items:
-        if item.name.lower() == command[1]:
-            player.take_item(item)
-            player.current_room.remove_item(item)
-            player.items[len(player.items) - 1].on_take(item.name)
-            return
-    else:
-        print('\nThat item does not exist')
-
-
-def drop_item(player, command):
-    lst = player.items
-    for i in range(len(lst)):
-        if lst[i].name.lower() == command[1]:
-            item = lst[i]
-            player.items[i].on_drop(item.name)
-            player.drop_item(item)
-            player.current_room.add_item(item)
-            return
-    else:
-        print('\nThat item does not exist')
-
-
-    # Make a new player object that is currently in the 'outside' room.
+# Make a new player object that is currently in the 'outside' room.
 player = Player(name=create_player_name(sys.argv),
-                current_room=room["foyer"], items=[])
+                current_room=room["outside"], items=[])
 
 # Write a loop that:
 #
