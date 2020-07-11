@@ -46,7 +46,7 @@ while True:
     # * Prints the current room name
     # * Prints the current description (the textwrap module might be useful here).
     print(
-        f"\n{player.name}, you are currently located in the {player.current_room.name}. \
+        f"\n{player.name}, you are in the {player.current_room.name}. \
          \n{player.current_room.description}.\n")
 
     player.get_current_room_items()
@@ -56,22 +56,24 @@ while True:
     selection = handle_input(user_input)
 
     # If the user enters "q", quit the game.
-    if len(selection) == 1 and selection[0] == "q":
+    if selection[0] == "q":
         break
     # If the user enters a cardinal direction, attempt to move to the room there.
-    elif len(selection) == 1 and selection[0] == "n":
+    elif selection[0] == "n":
         validate_direction(player, "n_to")
-    elif len(selection) == 1 and selection[0] == "s":
+    elif selection[0] == "s":
         validate_direction(player, "s_to")
-    elif len(selection) == 1 and selection[0] == "e":
+    elif selection[0] == "e":
         validate_direction(player, "e_to")
-    elif len(selection) == 1 and selection[0] == "w":
+    elif selection[0] == "w":
         validate_direction(player, "w_to")
-    elif len(selection) == 1 and selection[0] == "i":
+    elif selection[0] == "i":
         player.get_player_items()
-    elif len(selection) == 2 and selection[0][0] == "t" or selection[0][0] == "g":
+    # If user enters "take" or "get" "item", the item will be added to inventory
+    elif selection[0][0] == "t" or selection[0][0] == "g":
         take_item(player, selection)
-    elif len(selection) == 2 and selection[0][0] == "d" or selection[0][0] == "r":
+    # If user enters "drop" or "remove" "item", the item will be removed and added to the current room
+    elif selection[0][0] == "d" or selection[0][0] == "r":
         drop_item(player, selection)
     else:
         print("\nI don't understand")

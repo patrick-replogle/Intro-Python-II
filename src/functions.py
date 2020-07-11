@@ -32,18 +32,14 @@ def take_item(player, command):
             player.current_room.remove_item(item)
             player.items[len(player.items) - 1].on_take(item.name)
             return
-    else:
-        print('\nThat item does not exist')
+    print('\nThat item is not in the room')
 
 
 def drop_item(player, command):
-    lst = player.items
-    for i in range(len(lst)):
-        if lst[i].name.lower() == command[1]:
-            item = lst[i]
-            player.items[i].on_drop(item.name)
-            player.drop_item(item)
-            player.current_room.add_item(item)
+    for i in range(len(player.items)):
+        if player.items[i].name.lower() == command[1]:
+            player.current_room.add_item(player.items[i])
+            player.items[i].on_drop(player.items[i].name)
+            player.drop_item(player.items[i])
             return
-    else:
-        print('\nThat item does not exist')
+    print('\nThat item is not in your inventory')
