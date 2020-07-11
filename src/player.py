@@ -23,8 +23,6 @@ class Player:
             print(f"Items in {self.current_room.name}")
             for i in self.current_room.items:
                 print(f"  {i}")
-        else:
-            print(f"No items in {self.current_room.name}")
 
     def take_item(self, item):
         self.items.append(item)

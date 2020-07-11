@@ -8,13 +8,11 @@ def create_player_name(lst):
 
 
 def handle_input(lst):
-    for x in range(len(lst)):
-        if len(lst) == 1:
-            lst[x] = lst[x][0].lower()
-        elif len(lst) == 2:
-            lst[x] = lst[x].lower()
-        else:
-            break
+    if len(lst) > 2:
+        combined_input = ""
+        for i in range(1, len(lst)):
+            combined_input += lst[i] + " "
+        lst = [lst[0][0], combined_input.strip()]
     return lst
 
 
@@ -22,7 +20,7 @@ def validate_direction(player, direction):
     if hasattr(player.current_room, direction):
         player.current_room = getattr(player.current_room, direction, None)
     else:
-        print("\nMovement not allowed!")
+        print("\nThere is nothing in that direction!")
 
 
 def take_item(player, command):
