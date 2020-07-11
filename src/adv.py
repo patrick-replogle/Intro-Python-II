@@ -48,12 +48,7 @@ room['secret room'].s_to = room['treasure']
 player = Player(name=create_player_name(sys.argv),
                 current_room=room["outside"], items=[])
 
-# print(f"\n{player.name}, you are in the {player.current_room.name}. \
-#          \n{player.current_room.description}.")
-
-
-print(f"\n{player.name}, you are in the {player.current_room.name}. \
-         \n{player.current_room.description}.")
+print_location(player)
 
 # Write a loop that:
 #
