@@ -2,7 +2,7 @@ import sys
 from room import Room
 from player import Player
 from item import Item
-from functions import create_player_name, print_location, handle_input, validate_direction, take_item, drop_item
+from functions import create_player_name, handle_input, validate_direction, take_item, drop_item
 
 # Declare all the rooms
 
@@ -48,36 +48,36 @@ room['secret room'].s_to = room['treasure']
 player = Player(name=create_player_name(sys.argv),
                 current_room=room["outside"], items=[])
 
-print_location(player)
+player.print_player_location()
 
 # Write a loop that:
 #
 while True:
+    # print room items
     player.get_current_room_items()
     # Waits for user input and decides what to do.
     user_input = input("\nWhat shall I do? ").lower().split(" ")
     first_letter = user_input[0][0]
     selection = handle_input(user_input)
-
     # If the user enters "q", quit the game.
     if first_letter == "q":
         break
-    # Prints the Prints the current room name and current description
+    # Prints the current room name and current description
     elif first_letter == "l":
-        print_location(player)
+        player.print_player_location()
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif first_letter == "n":
         validate_direction(player, "n_to")
-        print_location(player)
+        player.print_player_location()
     elif first_letter == "s":
         validate_direction(player, "s_to")
-        print_location(player)
+        player.print_player_location()
     elif first_letter == "e":
         validate_direction(player, "e_to")
-        print_location(player)
+        player.print_player_location()
     elif first_letter == "w":
         validate_direction(player, "w_to")
-        print_location(player)
+        player.print_player_location()
     elif first_letter == "i":
         player.get_player_items()
     # If user enters "take" or "get" followed by item an name, the item will be added to inventory
