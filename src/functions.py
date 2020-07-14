@@ -38,10 +38,10 @@ def take_item(player, command):
 
 
 def drop_item(player, command):
-    for i in range(len(player.items)):
-        if player.items[i].name.lower() == command[1]:
-            player.current_room.add_item(player.items[i])
+    for (i, item) in enumerate(player.items):
+        if item.name.lower() == command[1]:
+            player.current_room.add_item(item)
             player.items[i].on_drop()
-            player.drop_item(player.items[i])
+            player.drop_item(item)
             return
     print('\nThat item is not in your inventory')
