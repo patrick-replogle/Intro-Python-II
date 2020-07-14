@@ -8,11 +8,8 @@ class Player:
         self.items = items
 
     def __str__(self):
-        return f"{self.name}, you are currently located in the {self.current_room}"
-
-    def print_player_location(self):
-        print(f"\n{self.name}, you are in the {self.current_room.name}. \
-         \n{self.current_room.description}.")
+        return f"\n{self.name}, you are in the {self.current_room.name}. \
+         \n{self.current_room.description}."
 
     def get_player_items(self):
         if len(self.items) == 0:

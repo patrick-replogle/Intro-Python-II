@@ -48,7 +48,7 @@ room['secret room'].s_to = room['treasure']
 player = Player(name=create_player_name(sys.argv),
                 current_room=room["outside"], items=[])
 
-player.print_player_location()
+print(player)
 
 # Write a loop that:
 #
@@ -64,7 +64,7 @@ while True:
         break
     # Prints the current room name and current description
     elif first_letter == "l":
-        player.print_player_location()
+        print(player)
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif first_letter == "n":
         validate_direction(player, "n_to")

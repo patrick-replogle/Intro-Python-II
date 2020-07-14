@@ -22,7 +22,7 @@ def handle_input(lst):
 def validate_direction(player, direction):
     if hasattr(player.current_room, direction):
         player.current_room = getattr(player.current_room, direction, None)
-        player.print_player_location()
+        print(player)
     else:
         print("\nThere is nothing in that direction!")
 
