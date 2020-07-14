@@ -1,8 +1,11 @@
 # helper functions
 
 def create_player_name(lst):
-    if(len(lst) == 2):
-        return lst[1]
+    if len(lst) > 1:
+        name = ""
+        for i in range(1, len(lst)):
+            name += lst[i] + " "
+        return name.strip()
     else:
         return 'Player One'
 
@@ -19,6 +22,7 @@ def handle_input(lst):
 def validate_direction(player, direction):
     if hasattr(player.current_room, direction):
         player.current_room = getattr(player.current_room, direction, None)
+        player.print_player_location()
     else:
         print("\nThere is nothing in that direction!")
 

@@ -68,16 +68,12 @@ while True:
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif first_letter == "n":
         validate_direction(player, "n_to")
-        player.print_player_location()
     elif first_letter == "s":
         validate_direction(player, "s_to")
-        player.print_player_location()
     elif first_letter == "e":
         validate_direction(player, "e_to")
-        player.print_player_location()
     elif first_letter == "w":
         validate_direction(player, "w_to")
-        player.print_player_location()
     elif first_letter == "i":
         player.get_player_items()
     # If user enters "take" or "get" followed by item an name, the item will be added to inventory
