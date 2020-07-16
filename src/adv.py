@@ -2,6 +2,9 @@ import sys
 from room import Room
 from player import Player
 from item import Item
+from treasure import Treasure
+from weapon import Weapon
+from light import Light
 from functions import create_player_name, handle_input, validate_direction, take_item, drop_item
 
 # Declare all the rooms
@@ -11,14 +14,14 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [Item("Stick", "It's better than nothing")]),
+passages run north and east.""", [Weapon("Stick", "It's better than nothing", 25)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [Item("Rope", "Climb the tallest cliffs")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Item("Sword", "Vanquish your enemies")]),
+to north. The smell of gold permeates the air.""", [Weapon("Sword", "Vanquish your enemies", 150)]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -26,9 +29,10 @@ earlier adventurers. The only exit is to the south.""", []),
 
     'secret room': Room("Secret Room", """You've found the secret room North of the Treasure
 Chamber. Reward yourself with treasures once thought to be lost. South of you is the main room of 
-the treasure chamber.""", [Item("Gold Coins", "Fill your pockets with riches"),
-                           Item("Crown", "The crown of a once great king"),
-                           Item("Holy Grail", "Indiana Jones would be pleased")]),
+the treasure chamber.""", [Treasure("Gold Coins", "Fill your pockets with riches", "250"),
+                           Treasure(
+                               "Crown", "The crown of a once great king", "2000"),
+                           Treasure("Holy Grail", "Indiana Jones would be pleased", "Priceless")]),
 }
 
 # Link rooms together
